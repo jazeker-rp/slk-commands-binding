@@ -1,4 +1,4 @@
-local QBCore = exports['qb-core']:GetCoreObject()
+local QBCore = exports['slk-core']:GetCoreObject()
 local keyPressed = false
 local availableKeys = {
     {289, "F2"},
@@ -27,7 +27,7 @@ end
 
 RegisterNUICallback('close', closeBindingMenu)
 
-RegisterNetEvent('qb-commandbinding:client:openUI', function()
+RegisterNetEvent('slk-commandbinding:client:openUI', function()
     openBindingMenu()
 end)
 
@@ -63,6 +63,6 @@ RegisterNUICallback('save', function(data, cb)
         ["F10"] = {["command"] = data.keyData["F10"][1], ["argument"] = data.keyData["F10"][2]},
     }
     QBCore.Functions.Notify('Command bindings have been saved!', 'success')
-    TriggerServerEvent('qb-commandbinding:server:setKeyMeta', keyData)
+    TriggerServerEvent('slk-commandbinding:server:setKeyMeta', keyData)
     cb('ok')
 end)

@@ -1,16 +1,16 @@
 qBinding = {}
 
-$(document).on('keydown', function() {
-    switch(event.keyCode) {
+$(document).on('keydown', function () {
+    switch (event.keyCode) {
         case 27:
             qBinding.Close();
             break;
     }
 });
 
-$(document).ready(function(){
+$(document).ready(function () {
 
-    window.addEventListener('message', function(event){
+    window.addEventListener('message', function (event) {
         var eventData = event.data;
 
         if (eventData.action == "openBinding") {
@@ -19,7 +19,7 @@ $(document).ready(function(){
     });
 });
 
-$(document).on('click', '.save-bindings', function(e){
+$(document).on('click', '.save-bindings', function (e) {
     e.preventDefault();
 
     var keyData = {}
@@ -30,19 +30,19 @@ $(document).on('click', '.save-bindings', function(e){
     keyData['F7'] = [$("#command-F7").val(), $("#argument-F7").val()]
     keyData['F9'] = [$("#command-F9").val(), $("#argument-F9").val()]
     keyData['F10'] = [$("#command-F10").val(), $("#argument-F10").val()]
-    
 
-    $.post('https://qb-commandbinding/save', JSON.stringify({
+
+    $.post('https://slk-commandbinding/save', JSON.stringify({
         keyData: keyData
     }));
 });
 
-qBinding.Open = function(data) {
+qBinding.Open = function (data) {
     $(".container").fadeIn(150);
 
-    $.each(data.keyData, function(id, keyData){
-        var commandString = $(".keys").find("[data-key='" + id + "']").find('#command-'+id)
-        var argumentString = $(".keys").find("[data-key='" + id + "']").find('#argument-'+id)
+    $.each(data.keyData, function (id, keyData) {
+        var commandString = $(".keys").find("[data-key='" + id + "']").find('#command-' + id)
+        var argumentString = $(".keys").find("[data-key='" + id + "']").find('#argument-' + id)
 
         if (keyData.command != null) {
             $(commandString).val(keyData.command)
@@ -53,7 +53,7 @@ qBinding.Open = function(data) {
     });
 }
 
-qBinding.Close = function() {
+qBinding.Close = function () {
     $(".container").fadeOut(150);
-    $.post('https://qb-commandbinding/close');
+    $.post('https://slk-commandbinding/close');
 }

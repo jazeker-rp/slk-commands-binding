@@ -1,5 +1,6 @@
-# qb-commandbinding
-Command Binds For QB-Core
+# slk-commandbinding
+
+Command Binds For slk-core
 
 # License
 
